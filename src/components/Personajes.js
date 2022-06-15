@@ -2,6 +2,6 @@ import React from 'react'
 
 export const Personajes = ({texto}) => {
   return (
-    <div>{texto}</div>
+    <div>{texto} {process.env.REACT_APP_WEBSITE_NAME}</div>
   )
 }
