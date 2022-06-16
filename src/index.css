@@ -2,7 +2,14 @@
   font-family: starwarfont;
   src: url(./resources/Starjedi.ttf);
 }
-
+@font-face {
+  font-family: starwarfont;
+  src: url(./resources/icomoon.ttf);
+}
+.link::after{
+  content: "\a\e900";
+  white-space: pre;
+}
 body,html {
   margin: 0;
   padding: 0;
@@ -23,9 +30,9 @@ background:#000 url(./resources/images/stars.png) repeat top center;
 }
 a {
   color: inherit;
-  text-decoration: inherit; /* no underline */
+  text-decoration: inherit;
 }
-a:hover{
-  text-decoration-line: underline;
-  
+.link.active::after{
+  content: "\a\e901";
+  white-space: pre;
 }
