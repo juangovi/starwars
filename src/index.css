@@ -6,27 +6,25 @@
   font-family: starwarfont;
   src: url(./resources/icomoon.ttf);
 }
+body,html {
+  margin: 0;
+  padding: 0;
+  background:#000 url(./resources/images/stars.png) repeat top center;
+}
 .link::after{
   content: "\a\e900";
   white-space: pre;
 }
-body,html {
-  margin: 0;
-  padding: 0;
-}
 .stars{
 width:100%;
-color: white;
+color: aliceblue;
 font-family: starwarfont;
 }
 .stars h1{
-  text-shadow: 5px 5px rgb(160, 160, 160);
+  text-shadow: 5px 5px rgba(255, 255, 0, 0.336);
   text-align: center;
   font-size: 100px;
   padding: 3%;
-}
-.stars {
-background:#000 url(./resources/images/stars.png) repeat top center;
 }
 a {
   color: inherit;
