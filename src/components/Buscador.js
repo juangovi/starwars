@@ -1,24 +1,28 @@
 import React from "react";
+import { useForm } from "../hooks/useForm";
 
 export const Buscador = () => {
+  const [params, handleChange] = useForm({busqueda:""})
+  
   return (
     <div className="container">
-      <div class="input-group mb-3 mt-5">
+      <form className="input-group mb-3 mt-5" onSubmit={(e) => e.preventDefault()}>
         <button
-          class="btn btn-outline-secondary"
-          type="button"
+          className="btn btn-primary"
+          type="submit"
           id="button-addon1"
         >
           Buscar
         </button>
         <input
           type="text"
-          class="form-control"
-          placeholder=""
-          aria-label="Example text with button addon"
-          aria-describedby="button-addon1"
+          className="form-control"
+          name="busqueda"
+          placeholder="Nombre del personaje"
+          value={params.busqueda}
+          onChange={handleChange}
         />
-      </div>
+      </form>
     </div>
   );
 };
