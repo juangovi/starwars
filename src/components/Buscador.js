@@ -1,12 +1,15 @@
 import React from "react";
 import { useForm } from "../hooks/useForm";
 
-export const Buscador = () => {
+export const Buscador = ({setPersonajes}) => {
   const [params, handleChange] = useForm({busqueda:""})
-  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setPersonajes(params.busqueda);
+  }
   return (
     <div className="container">
-      <form className="input-group mb-3 mt-5" onSubmit={(e) => e.preventDefault()}>
+      <form className="input-group mb-3 mt-5" onSubmit={handleSubmit}>
         <button
           className="btn btn-primary"
           type="submit"
