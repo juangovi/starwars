@@ -3,7 +3,7 @@
   src: url(./resources/Starjedi.ttf);
 }
 @font-face {
-  font-family: starwarfont;
+  font-family: icons;
   src: url(./resources/icomoon.ttf);
 }
 body,
@@ -11,6 +11,9 @@ html {
   margin: 0;
   padding: 0;
   background: #000 url(./resources/images/stars.png) repeat top center;
+}
+.link{
+  font-family: icons,starwarfont;
 }
 .link::after {
   content: "\a\e900";

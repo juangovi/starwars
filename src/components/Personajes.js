@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Buscador } from "./Buscador";
 
 export const Personajes = () => {
+  const [personajes, setPersonajes] = useState([]);
   const [result, setresult] = useState({
     personajes: [],
     loading: true,
   });
   useEffect(() => {
+    console.log("Personajes");
     firstFetch();
-
     return () => {
-      console.log("cleanup");
+      setresult({
+        personajes: [],
+        loading: true,
+      });
     };
   }, []);
   const firstFetch = async () => {
