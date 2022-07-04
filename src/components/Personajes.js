@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Buscador } from "./Buscador";
 
 export const Personajes = () => {
-  const [personajes, setPersonajes] = useState([]);
+  const [personajes, setPersonajes] = useState("");
   const [result, setresult] = useState({
     personajes: [],
     loading: true,
@@ -16,9 +16,9 @@ export const Personajes = () => {
         loading: true,
       });
     };
-  }, []);
+  }, [personajes]);
   const firstFetch = async () => {
-    const url = `https://swapi.dev/api/people/`;
+    const url = `https://swapi.dev/api/people/?search=${personajes}`;
     const response = await fetch(url);
     const data = await response.json();
     console.log(data.results);
@@ -29,7 +29,7 @@ export const Personajes = () => {
   };
   return (
     <div>
-      <Buscador />
+      <Buscador setPersonajes={setPersonajes}/>
       <div className="container">
         {result.loading ?
           <div className="text-center">
