@@ -1,11 +1,12 @@
 import React from "react";
 import { useForm } from "../hooks/useForm";
 
-export const Buscador = ({setPersonajes}) => {
+export const Buscador = ({setBusqueda,resetPages}) => {
   const [params, handleChange] = useForm({busqueda:""})
   const handleSubmit = (e) => {
     e.preventDefault();
-    setPersonajes(params.busqueda);
+    resetPages(1);
+    setBusqueda(params.busqueda);
   }
   return (
     <div className="container">
