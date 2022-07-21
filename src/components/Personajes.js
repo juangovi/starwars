@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Buscador } from "./Buscador";
 import { firstFetch } from "../service/FetchService";
 import { Paginacion } from "./Paginacion";
+import { useQuery } from "../hooks/useQuery";
 export const Personajes = () => {
-  const [personajes, setPersonajes] = useState("");
-  const [pagina, setPagina] = useState(1);
+  const  {get}  = useQuery();
   const [totalPaginas, setTotalPaginas] = useState(1);
   const [result, setresult] = useState({
     data: {},
@@ -13,26 +13,26 @@ export const Personajes = () => {
   });
 
   useEffect(() => {
-    console.log("Personajes");
+    console.log("personajes");
     firstFetch(
-      `https://swapi.dev/api/people/?search=${personajes}&page=${pagina}`
+      `https://swapi.dev/api/people/`,{search: get("search"), page: get("page")}
     ).then((data) => {
       console.log(data);
       setresult(data);
       setTotalPaginas(data.data.count / 10);
-    });
+    }
+    );
     return () => {
       setresult({
         data: {},
         loading: true,
         error: false,
       });
-    };
-  }, [personajes, pagina]);
+    }
+  }, [get("search"), get("page")]);
 
   return (
     <div>
-      <Buscador setBusqueda={setPersonajes} resetPages={setPagina} />
       <div className="container">
         {result.loading ? (
           <div className="text-center">
@@ -40,6 +40,7 @@ export const Personajes = () => {
           </div>
         ) : (
           <>
+            <Buscador />
             <div className="row">
               {result.data.results.map((personaje) => (
                 <div className="col-md-4" key={personaje.name}>
@@ -66,7 +67,7 @@ export const Personajes = () => {
                 </div>
               ))}
             </div>
-            <Paginacion setPagina={setPagina} totalPaginas={totalPaginas} />
+            <Paginacion totalPaginas={totalPaginas} />
           </>
         )}
       </div>

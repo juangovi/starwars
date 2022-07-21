@@ -1,7 +1,10 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
+import { useQuery } from '../hooks/useQuery';
 
-export const Paginacion = ({setPagina,totalPaginas}) => {
+export const Paginacion = ({totalPaginas}) => {
+  const { set } = useQuery();
+  console.log(totalPaginas);
   return (
     <ReactPaginate
         previousLabel="< Anterior"
@@ -10,7 +13,7 @@ export const Paginacion = ({setPagina,totalPaginas}) => {
         pageCount={Math.ceil( totalPaginas )} 
         pageRangeDisplayed={3}
         onPageChange={(data) => {
-          setPagina(data.selected + 1);
+          set("page", data.selected + 1);
         }
         }
         containerClassName="pagination d-flex justify-content-center"

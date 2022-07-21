@@ -1,21 +1,24 @@
 import React from 'react'
 
-export const useFetch = ({url}) => {
-  const [result, setresult] = useState({
-    data: {},
+export const useFetch = (url, query) => {
+  const [state, setState] = React.useState({
     loading: true,
+    data: null,
+    error: null,
   });
+  React.useEffect(() => {
+    setState({ loading: true, data: null, error: null });
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url + new URLSearchParams(query).toString());
+        const data = await response.json();
+        setState({ loading: false, data, error: null });
+      } catch (error) {
+        setState({ loading: false, data: null, error });
+      }
+    }
+    fetchData();
+  }, [url, query]);
 
-  // const url = `https://swapi.dev/api/people/?search=${personajes}&page=${pagina}`;
-  console.log(url);
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log(data.results);
-  // setTotalPaginas(data.count / 10);
-  setresult({
-    data,
-    loading: false,
-    error
-  });
-  return result
+  return state;
 }

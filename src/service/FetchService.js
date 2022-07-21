@@ -1,7 +1,9 @@
-export const firstFetch = async ( url ) => {
+export const firstFetch = async ( url, params ) => {
   //const url = `https://swapi.dev/api/people/?search=${personajes}&page=${pagina}`;
-  console.log(url);
-  const response = await fetch(url);
+  const newurl = new URL(url);
+  newurl.search = new URLSearchParams(params).toString();
+  console.log(newurl);
+  const response = await fetch(newurl);
   const data = await response.json();
   //console.log(data.results);
   return({

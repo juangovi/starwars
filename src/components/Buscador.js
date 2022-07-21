@@ -1,12 +1,14 @@
 import React from "react";
 import { useForm } from "../hooks/useForm";
+import { useQuery } from "../hooks/useQuery";
 
-export const Buscador = ({setBusqueda,resetPages}) => {
-  const [params, handleChange] = useForm({busqueda:""})
+export const Buscador = () => {
+  const [params, handleChange] = useForm({busqueda:""});
+  const { set } = useQuery();
   const handleSubmit = (e) => {
     e.preventDefault();
-    resetPages(1);
-    setBusqueda(params.busqueda);
+    set("search", params.busqueda);
+    set("page", 1);
   }
   return (
     <div className="container">
