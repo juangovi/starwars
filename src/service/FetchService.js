@@ -1,4 +1,4 @@
-export const firstFetch = async ( url, params ) => {
+export const CustomFetch = async ( url, params ) => {
   //const url = `https://swapi.dev/api/people/?search=${personajes}&page=${pagina}`;
   const newurl = new URL(url);
   newurl.search = new URLSearchParams(params).toString();

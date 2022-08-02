@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Buscador } from "./Buscador";
-import { firstFetch } from "../service/FetchService";
+import { CustomFetch } from "../service/FetchService";
 import { Paginacion } from "./Paginacion";
 import { useQuery } from "../hooks/useQuery";
 export const Personajes = () => {
@@ -14,7 +14,7 @@ export const Personajes = () => {
 
   useEffect(() => {
     console.log("personajes");
-    firstFetch(
+    CustomFetch(
       `https://swapi.dev/api/people/`,{search: get("search"), page: get("page")}
     ).then((data) => {
       console.log(data);

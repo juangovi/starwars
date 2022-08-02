@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Buscador } from "./Buscador";
-import { firstFetch } from "../service/FetchService";
+import { CustomFetch } from "../service/FetchService";
 import { Paginacion } from "./Paginacion";
 
 export const Planetas = () => {
@@ -14,7 +14,7 @@ export const Planetas = () => {
   });
   useEffect(() => {
     console.log("planetas");
-    firstFetch(
+    CustomFetch(
       `https://swapi.dev/api/planets/?search=${planetas}&page=${pagina}`
     ).then((data) => {
       console.log(data);
