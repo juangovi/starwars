@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Buscador } from "./Buscador";
 import { CustomFetch } from "../service/FetchService";
 import { Paginacion } from "./Paginacion";
+import { useQuery } from "../hooks/useQuery";
 
 export const Planetas = () => {
   const  {get}  = useQuery();
@@ -32,7 +33,7 @@ export const Planetas = () => {
 
   return (
     <div>
-      <Buscador setBusqueda={setplanetas} resetPages={setPagina} />
+      <Buscador />
       <div className="container">
         {result.loading ? (
           <div className="text-center">
@@ -64,7 +65,7 @@ export const Planetas = () => {
                 </div>
               ))}
             </div>
-            <Paginacion setPagina={setPagina} totalPaginas={totalPaginas} />
+            <Paginacion totalPaginas={totalPaginas} />
           </>
         )}
       </div>
