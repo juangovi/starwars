@@ -3,8 +3,8 @@ import ReactPaginate from 'react-paginate';
 import { useQuery } from '../hooks/useQuery';
 
 export const Paginacion = ({totalPaginas}) => {
-  const { set } = useQuery();
-  console.log(totalPaginas);
+  const { set, get } = useQuery();
+  console.log(get("page"));
   return (
     <ReactPaginate
         previousLabel="< Anterior"
@@ -27,6 +27,7 @@ export const Paginacion = ({totalPaginas}) => {
         activeClassName="active"
         breakClassName="page-item disabled"
         breakLinkClassName="page-link"
+        forcePage={get("page") ? Number(get("page"))-1 : 0}
       />
   )
 }

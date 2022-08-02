@@ -4,8 +4,7 @@ import { CustomFetch } from "../service/FetchService";
 import { Paginacion } from "./Paginacion";
 
 export const Planetas = () => {
-  const [planetas, setplanetas] = useState("");
-  const [pagina, setPagina] = useState(1);
+  const  {get}  = useQuery();
   const [totalPaginas, setTotalPaginas] = useState(1);
   const [result, setresult] = useState({
     data: {},
@@ -15,20 +14,21 @@ export const Planetas = () => {
   useEffect(() => {
     console.log("planetas");
     CustomFetch(
-      `https://swapi.dev/api/planets/?search=${planetas}&page=${pagina}`
+      `https://swapi.dev/api/planets/`,{search: get("search"), page: get("page")}
     ).then((data) => {
       console.log(data);
       setresult(data);
       setTotalPaginas(data.data.count / 10);
-    });
+    }
+    );
     return () => {
       setresult({
         data: {},
         loading: true,
         error: false,
       });
-    };
-  }, [planetas, pagina]);
+    }
+  }, [get("search"), get("page")]);
 
   return (
     <div>
