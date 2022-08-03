@@ -38,6 +38,9 @@ a {
   content: "\a\e901";
   white-space: pre;
 }
+strong{
+  overflow:hidden;
+}
 
 
 
